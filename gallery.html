@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mian Tailer | Gallery</title>
+    <meta
+      name="description"
+      content="Mian Tailer gallery of men's shalwar kameez design photos and premium tailoring details."
+    />
+    <link rel="icon" type="image/svg+xml" href="logo-machine.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="gallery">
+    <header class="subpage-hero">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img class="brand-mark" src="logo-machine.svg" alt="Mian Tailer logo" />
+          <span>Mian Tailer</span>
+        </a>
+        <div class="nav-actions">
+          <div class="nav-links">
+            <a href="about.html" data-i18n="nav.about">About</a>
+            <a href="services.html" data-i18n="nav.services">Services</a>
+            <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+            <a href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+            <a href="contact.html" data-i18n="nav.contact">Contact</a>
+          </div>
+          <div class="lang-switcher" aria-label="Language switcher">
+            <button class="lang-button is-active" type="button" data-lang-switch="en">EN</button>
+            <button class="lang-button" type="button" data-lang-switch="ur">اردو</button>
+          </div>
+        </div>
+      </nav>
+
+      <div class="section page-intro">
+        <p class="eyebrow" data-i18n="gallery.hero.eyebrow">Real Design Gallery</p>
+        <h1 data-i18n="gallery.hero.title">Mens Shalwar Kameez Designs</h1>
+        <p class="hero-text" data-i18n="gallery.hero.text">
+          Explore our latest men's shalwar kameez designs, premium stitching
+          details, and elegant tailoring styles.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="section gallery-page-section">
+        <div class="gallery-section-head">
+          <div>
+            <p class="eyebrow" data-i18n="gallery.catalog.eyebrow">Curated Collection</p>
+            <h2 data-i18n="gallery.catalog.title">Featured Suit Designs</h2>
+          </div>
+          <a class="button secondary gallery-head-cta" href="cart.html">Review Cart</a>
+        </div>
+        <div class="gallery-grid catalog-grid" id="curated-gallery-list"></div>
+        <div class="empty-state" id="curated-empty" hidden>
+          <h3>Catalog is being refreshed</h3>
+          <p>Featured products will appear here shortly.</p>
+        </div>
+      </section>
+
+      <section class="section gallery-page-section gallery-live-section">
+        <div class="gallery-section-head">
+          <div>
+            <p class="eyebrow" data-i18n="gallery.live.eyebrow">Live Uploads</p>
+            <h2 data-i18n="gallery.live.title">Latest Added Designs</h2>
+          </div>
+        </div>
+        <div class="gallery-grid catalog-grid" id="gallery-list"></div>
+        <div class="empty-state" id="gallery-empty" hidden>
+          <h3 data-i18n="gallery.empty.title">No gallery images yet</h3>
+          <p data-i18n="gallery.empty.text">New designs will be shown here soon.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> <span data-i18n="footer.tagline">Mian Tailer. Crafted for elegance.</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

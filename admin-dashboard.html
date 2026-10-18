@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mian Tailer | Dashboard</title>
+    <meta
+      name="description"
+      content="Mian Tailer dashboard for managing gallery uploads and contact requests."
+    />
+    <link rel="icon" type="image/svg+xml" href="/logo-machine.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="admin-body">
+    <main class="admin-app">
+      <section class="admin-dashboard-shell">
+        <aside class="admin-sidebar">
+          <div class="admin-sidebar-brand">
+            <a class="brand" href="/">
+              <img class="brand-mark" src="/logo-machine.svg" alt="Mian Tailer logo" />
+              <span>Mian Tailer</span>
+            </a>
+            <p class="admin-sidebar-copy">Tailoring CMS Dashboard</p>
+          </div>
+
+          <nav class="admin-sidebar-nav">
+            <a href="#overview" class="admin-nav-link is-active">Dashboard</a>
+            <a href="#gallery-manager" class="admin-nav-link">Gallery</a>
+            <a href="#orders-manager" class="admin-nav-link">Orders</a>
+            <a href="#security" class="admin-nav-link">Security</a>
+            <a href="#contacts-manager" class="admin-nav-link">Messages</a>
+            <a href="/" class="admin-nav-link">View Website</a>
+            <a href="/gallery" class="admin-nav-link">Public Gallery</a>
+          </nav>
+
+          <div class="admin-sidebar-footer">
+            <p>Mian Tailer Control Center</p>
+            <button class="button secondary" id="logout-button" type="button">Logout</button>
+          </div>
+        </aside>
+
+        <div class="admin-main">
+          <header class="admin-topbar" id="overview">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h2>Dashboard</h2>
+              <p class="admin-topbar-copy">
+                Monitor your gallery, manage client requests, and update website
+                content professionally.
+              </p>
+            </div>
+            <div class="admin-topbar-actions">
+              <a class="button secondary" href="/gallery">View Gallery</a>
+              <a class="button primary" href="/">Open Website</a>
+            </div>
+          </header>
+
+          <section class="admin-stats">
+            <article class="admin-stat-card">
+              <p class="admin-stat-label">Gallery Images</p>
+              <h3 id="gallery-count">0</h3>
+              <span>Published designs in public gallery</span>
+            </article>
+            <article class="admin-stat-card">
+              <p class="admin-stat-label">Orders</p>
+              <h3 id="order-count">0</h3>
+              <span>Checkout orders placed by customers</span>
+            </article>
+            <article class="admin-stat-card">
+              <p class="admin-stat-label">Contact Requests</p>
+              <h3 id="contact-count">0</h3>
+              <span>Customer inquiries from the website</span>
+            </article>
+          </section>
+
+          <section class="admin-panel-grid">
+            <section class="admin-panel-card" id="gallery-manager">
+              <div class="admin-card-head">
+                <div>
+                  <p class="eyebrow">Gallery</p>
+                  <h2>Upload New Designs</h2>
+                </div>
+                <span class="admin-card-tag">Media Library</span>
+              </div>
+              <form id="upload-form" class="stack-form">
+                <label>
+                  Shared Title
+                  <input type="text" name="title" placeholder="Optional shared title for uploaded designs" />
+                </label>
+                <label>
+                  Description
+                  <textarea
+                    name="description"
+                    rows="4"
+                    placeholder="Elegant folded design with contrast collar."
+                  ></textarea>
+                </label>
+                <label>
+                  Product Details
+                  <textarea
+                    name="details"
+                    rows="4"
+                    placeholder="Full product details, fabric feel, stitching notes, and occasion use."
+                  ></textarea>
+                </label>
+                <label>
+                  Price
+                  <input type="text" name="priceText" placeholder="Rs. 8,500" />
+                </label>
+                <label>
+                  Upload Design Images
+                  <input type="file" name="images" accept="image/*" multiple required />
+                </label>
+                <label class="admin-inline-check">
+                  <input type="checkbox" name="isVisible" value="true" checked />
+                  Show uploaded products on frontend immediately
+                </label>
+                <p class="admin-field-note">
+                  Select up to 20 real suit or shalwar kameez images at once. Each image will create a separate live gallery item.
+                </p>
+                <button type="submit" class="button primary">Upload Designs</button>
+                <p class="form-feedback" id="upload-feedback" aria-live="polite"></p>
+              </form>
+            </section>
+
+            <section class="admin-panel-card" id="security">
+              <div class="admin-card-head">
+                <div>
+                  <p class="eyebrow">Security</p>
+                  <h2>Change Password</h2>
+                </div>
+                <span class="admin-card-tag">Admin Access</span>
+              </div>
+              <form id="password-form" class="stack-form">
+                <label>
+                  Current Password
+                  <input type="password" name="currentPassword" required />
+                </label>
+                <label>
+                  New Password
+                  <input type="password" name="newPassword" minlength="6" required />
+                </label>
+                <button type="submit" class="button secondary">Update Password</button>
+                <p class="form-feedback" id="password-feedback" aria-live="polite"></p>
+              </form>
+            </section>
+          </section>
+
+          <section class="admin-section admin-section-wide">
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Gallery Items</p>
+                <h2>Managed Products</h2>
+              </div>
+              <span class="admin-card-tag">Live Content</span>
+            </div>
+            <div class="admin-gallery-list" id="admin-gallery-list"></div>
+            <div class="empty-state" id="admin-gallery-empty" hidden>
+              <h3>No uploads yet</h3>
+              <p>Upload your first menswear design to populate the public gallery.</p>
+            </div>
+          </section>
+
+          <section class="admin-section admin-section-wide" id="orders-manager">
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Orders</p>
+                <h2>Delivery & Checkout Orders</h2>
+              </div>
+              <span class="admin-card-tag">Sales Inbox</span>
+            </div>
+            <div class="admin-order-list" id="admin-order-list"></div>
+            <div class="empty-state" id="admin-order-empty" hidden>
+              <h3>No orders yet</h3>
+              <p>Checkout orders from the cart page will appear here.</p>
+            </div>
+          </section>
+
+          <section class="admin-section admin-section-wide" id="contacts-manager">
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Contacts</p>
+                <h2>Customer Requests</h2>
+              </div>
+              <span class="admin-card-tag">Inbox</span>
+            </div>
+            <div class="contact-list" id="contact-list"></div>
+            <div class="empty-state" id="contact-empty" hidden>
+              <h3>No contact requests yet</h3>
+              <p>New customer messages from the homepage will show up here.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>

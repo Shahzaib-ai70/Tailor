@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mian Tailer | Cart & Checkout</title>
+    <meta
+      name="description"
+      content="Review your cart, delivery details, and place your order with Mian Tailer."
+    />
+    <link rel="icon" type="image/svg+xml" href="logo-machine.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="cart">
+    <header class="subpage-hero">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img class="brand-mark" src="logo-machine.svg" alt="Mian Tailer logo" />
+          <span>Mian Tailer</span>
+        </a>
+        <div class="nav-actions">
+          <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="section page-intro">
+        <p class="eyebrow">Cart & Checkout</p>
+        <h1>Professional ordering with delivery and customer care.</h1>
+        <p class="hero-text">
+          Review your designs, confirm delivery details, and place the order in
+          one clean checkout flow.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="section checkout-layout">
+        <div class="checkout-main">
+          <article class="product-panel">
+            <div class="checkout-head">
+              <div>
+                <p class="eyebrow">Selected Designs</p>
+                <h2>Your Cart</h2>
+              </div>
+              <a class="button secondary" href="gallery.html">Continue Shopping</a>
+            </div>
+
+            <div class="cart-items" id="cart-items"></div>
+            <div class="empty-state" id="cart-empty" hidden>
+              <h3>Your cart is empty</h3>
+              <p>Add a few designs from the gallery to start your order.</p>
+            </div>
+          </article>
+
+          <article class="product-panel">
+            <p class="eyebrow">Delivery Details</p>
+            <h2>Place your order</h2>
+            <form class="contact-form" id="order-form">
+              <label>
+                <span>Full Name</span>
+                <input type="text" name="customerName" placeholder="Your name" required />
+              </label>
+              <label>
+                <span>Phone Number</span>
+                <input type="text" name="phone" placeholder="+92..." required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" placeholder="Optional email" />
+              </label>
+              <label>
+                <span>City</span>
+                <input type="text" name="city" placeholder="Delivery city" required />
+              </label>
+              <label>
+                <span>Delivery Address</span>
+                <textarea name="address" rows="4" placeholder="House, street, area, city" required></textarea>
+              </label>
+              <label>
+                <span>Payment Method</span>
+                <select name="paymentMethod">
+                  <option>Cash on Delivery</option>
+                  <option>Bank Transfer</option>
+                  <option>Advance Confirmation</option>
+                </select>
+              </label>
+              <label>
+                <span>Notes</span>
+                <textarea name="notes" rows="3" placeholder="Sizing, urgency, gift packaging, color preference"></textarea>
+              </label>
+              <button class="button primary" type="submit">Place Order</button>
+              <p class="form-feedback" id="order-feedback" aria-live="polite"></p>
+            </form>
+          </article>
+        </div>
+
+        <aside class="checkout-sidebar">
+          <article class="product-panel sticky-panel">
+            <p class="eyebrow">Order Summary</p>
+            <h2>Delivery Estimate</h2>
+            <div class="summary-list">
+              <div><span>Subtotal</span><strong id="cart-subtotal">Rs. 0</strong></div>
+              <div><span>Delivery Fee</span><strong id="cart-delivery">Rs. 0</strong></div>
+              <div class="summary-total"><span>Total</span><strong id="cart-total">Rs. 0</strong></div>
+            </div>
+            <div class="support-note">
+              <p><strong data-store-live>Customer care offline</strong></p>
+              <p data-store-delivery-eta>2 - 4 working days</p>
+              <p data-store-support-hours>Mon - Sat | 10:00 AM - 8:00 PM</p>
+            </div>
+            <div class="support-actions">
+              <a class="button primary" href="#" data-whatsapp-link>WhatsApp Support</a>
+              <a class="button secondary" href="contact.html">Need Help?</a>
+            </div>
+          </article>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Mian Tailer. Crafted for elegance.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

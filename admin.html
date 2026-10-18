@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mian Tailer | Admin Panel</title>
+    <meta
+      name="description"
+      content="Mian Tailer admin panel for managing gallery uploads and contact requests."
+    />
+    <link rel="icon" type="image/svg+xml" href="/logo-machine.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="admin-body">
+    <main class="admin-app">
+      <section class="admin-login-screen">
+        <div class="admin-login-hero">
+          <a class="brand" href="/">
+            <img class="brand-mark" src="/logo-machine.svg" alt="Mian Tailer logo" />
+            <span>Mian Tailer</span>
+          </a>
+          <p class="eyebrow">Professional Admin Panel</p>
+          <h1>Manage Your Tailoring Business</h1>
+          <p class="hero-text">
+            Control gallery uploads, customer messages, and website updates
+            from one professional dashboard.
+          </p>
+          <div class="admin-login-points">
+            <span>Gallery Management</span>
+            <span>Contact Inbox</span>
+            <span>Secure Access</span>
+          </div>
+        </div>
+
+        <section class="admin-auth-card">
+          <div class="section-heading compact-heading">
+            <p class="eyebrow">Login</p>
+            <h2>Admin Access</h2>
+          </div>
+          <p class="admin-note">
+            Default login: <strong>admin</strong> / <strong>mian123</strong>
+          </p>
+          <form class="contact-form" id="login-form">
+            <label>
+              Username
+              <input type="text" name="username" value="admin" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" value="mian123" required />
+            </label>
+            <button type="submit" class="button primary">Login To Dashboard</button>
+            <p class="form-feedback" id="login-feedback" aria-live="polite"></p>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <script src="/admin-login.js"></script>
+  </body>
+</html>
