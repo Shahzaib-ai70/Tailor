@@ -20,6 +20,7 @@ const heroSpotlightDescription = document.getElementById("hero-spotlight-descrip
 const heroSpotlightPrice = document.getElementById("hero-spotlight-price");
 const heroSpotlightLink = document.getElementById("hero-spotlight-link");
 const spotlightShuffleButton = document.getElementById("spotlight-shuffle-button");
+const heroMotionTrack = document.getElementById("hero-motion-track");
 const homeShuffleGrid = document.getElementById("home-shuffle-grid");
 const shuffleGalleryButton = document.getElementById("shuffle-gallery-button");
 const cartItemsContainer = document.getElementById("cart-items");
@@ -483,18 +484,9 @@ function renderHeroSpotlight(items) {
   heroSpotlightLink.href = item.productUrl || `product.html?id=${item.id}`;
 }
 
-function renderHomeShuffleGrid(items) {
-  if (!homeShuffleGrid || !items.length) {
-    return;
-  }
-
-  const selectedItems = pickRandomItems(items, 6);
-  homeShuffleGrid.innerHTML = "";
-
-  selectedItems.forEach((item) => {
-    const card = document.createElement("article");
-    card.className = "shuffle-card";
-    card.innerHTML = `
+function createShuffleCardMarkup(item) {
+  return `
+    <article class="shuffle-card">
       <a href="${item.productUrl || `product.html?id=${item.id}`}">
         <img src="${item.imagePath}" alt="${item.title}" loading="lazy" />
         <div class="shuffle-card-copy">
@@ -502,13 +494,61 @@ function renderHomeShuffleGrid(items) {
           <span>${item.priceText || item.price || ""}</span>
         </div>
       </a>
-    `;
-    homeShuffleGrid.appendChild(card);
-  });
+    </article>
+  `;
+}
+
+function renderHeroMotionTrack(items) {
+  if (!heroMotionTrack || !items.length) {
+    return;
+  }
+
+  const selectedItems = pickRandomItems(items, 5);
+  const repeatedItems = [...selectedItems, ...selectedItems];
+
+  heroMotionTrack.innerHTML = repeatedItems
+    .map(
+      (item) => `
+        <article class="hero-motion-item">
+          <img src="${item.imagePath}" alt="${item.title}" loading="lazy" />
+          <div>
+            <strong>${item.title}</strong>
+            <span>${item.priceText || item.price || "Premium menswear design"}</span>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderHomeShuffleGrid(items) {
+  if (!homeShuffleGrid || !items.length) {
+    return;
+  }
+
+  const firstRow = pickRandomItems(items, 6);
+  const secondRow = pickRandomItems([...items].reverse(), 6);
+  const rows = [firstRow, secondRow];
+
+  homeShuffleGrid.innerHTML = rows
+    .map((rowItems, index) => {
+      const repeatedMarkup = [...rowItems, ...rowItems]
+        .map((item) => createShuffleCardMarkup(item))
+        .join("");
+
+      return `
+        <div class="lookbook-row${index === 1 ? " is-reverse" : ""}">
+          <div class="lookbook-track">
+            ${repeatedMarkup}
+          </div>
+        </div>
+      `;
+    })
+    .join("");
 }
 
 async function loadHomeShowcase() {
-  if (!heroSpotlightImage && !homeShuffleGrid) {
+  if (!heroSpotlightImage && !homeShuffleGrid && !heroMotionTrack) {
     return;
   }
 
@@ -517,6 +557,7 @@ async function loadHomeShowcase() {
     const items = (data.items || []).filter((item) => item.isVisible !== false);
     lastGalleryItems = items;
     renderHeroSpotlight(items);
+    renderHeroMotionTrack(items);
     renderHomeShuffleGrid(items);
   } catch (_error) {
     // The homepage can still render even if showcase media fails to load.

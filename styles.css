@@ -2302,12 +2302,13 @@ body[data-page="home"] .hero-editorial-copy p:last-child {
   line-height: 1.7;
 }
 
-body[data-page="home"] .hero-side-cards {
+body[data-page="home"] .hero-motion-column {
   display: grid;
   gap: 1rem;
 }
 
-body[data-page="home"] .hero-side-card {
+body[data-page="home"] .hero-motion-video-card,
+body[data-page="home"] .hero-motion-reel {
   display: grid;
   gap: 0.85rem;
   padding: 0.8rem;
@@ -2317,20 +2318,51 @@ body[data-page="home"] .hero-side-card {
   box-shadow: 0 16px 42px rgba(86, 66, 45, 0.08);
 }
 
-body[data-page="home"] .hero-side-card img {
+body[data-page="home"] .hero-motion-video-card video {
   aspect-ratio: 4 / 5;
+  width: 100%;
   object-fit: cover;
   border-radius: 20px;
 }
 
-body[data-page="home"] .hero-side-card strong,
+body[data-page="home"] .hero-motion-video-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+body[data-page="home"] .hero-motion-track {
+  display: grid;
+  gap: 0.85rem;
+  animation: heroMotionVertical 20s linear infinite;
+}
+
+body[data-page="home"] .hero-motion-reel {
+  max-height: 420px;
+  overflow: hidden;
+}
+
+body[data-page="home"] .hero-motion-item {
+  display: grid;
+  gap: 0.7rem;
+}
+
+body[data-page="home"] .hero-motion-item img {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+body[data-page="home"] .hero-motion-item strong,
+body[data-page="home"] .hero-motion-video-copy strong,
 body[data-page="home"] .collection-editorial-copy strong,
 body[data-page="home"] .atelier-note-card strong {
   display: block;
   color: var(--text);
 }
 
-body[data-page="home"] .hero-side-card span,
+body[data-page="home"] .hero-motion-item span,
+body[data-page="home"] .hero-motion-video-copy span,
 body[data-page="home"] .collection-editorial-copy span,
 body[data-page="home"] .atelier-note-card span,
 body[data-page="home"] .section-lead {
@@ -2465,33 +2497,46 @@ body[data-page="home"] .luxury-lookbook {
   padding-top: 5rem;
 }
 
-body[data-page="home"] .luxury-lookbook .shuffle-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+body[data-page="home"] .lookbook-marquee {
+  display: grid;
   gap: 1rem;
 }
 
-body[data-page="home"] .luxury-lookbook .shuffle-card {
-  border-radius: 0;
-  overflow: visible;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
+body[data-page="home"] .lookbook-row {
+  overflow: hidden;
 }
 
-body[data-page="home"] .luxury-lookbook .shuffle-card a,
+body[data-page="home"] .lookbook-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: lookbookMarquee 30s linear infinite;
+}
+
+body[data-page="home"] .lookbook-row.is-reverse .lookbook-track {
+  animation-direction: reverse;
+}
+
 body[data-page="home"] .luxury-lookbook .shuffle-card {
+  width: min(290px, 70vw);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(110, 98, 87, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 48px rgba(86, 66, 45, 0.09);
+}
+
+body[data-page="home"] .luxury-lookbook .shuffle-card a {
   display: block;
 }
 
 body[data-page="home"] .luxury-lookbook .shuffle-card img {
   aspect-ratio: 4 / 5.4;
-  border-radius: 0;
   object-fit: cover;
-  box-shadow: 0 18px 48px rgba(86, 66, 45, 0.09);
 }
 
 body[data-page="home"] .luxury-lookbook .shuffle-card-copy {
-  padding: 0.8rem 0 0;
+  padding: 0.9rem 1rem 1rem;
 }
 
 body[data-page="home"] .showpiece-banner {
@@ -2519,6 +2564,26 @@ body[data-page="home"] .contact {
   padding-top: 5rem;
 }
 
+@keyframes heroMotionVertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes lookbookMarquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 1180px) {
   body[data-page="home"] .luxury-hero-shell,
   body[data-page="home"] .atelier-editorial-grid {
@@ -2533,8 +2598,16 @@ body[data-page="home"] .contact {
     min-height: 520px;
   }
 
-  body[data-page="home"] .hero-side-cards {
+  body[data-page="home"] .hero-motion-column {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-page="home"] .hero-motion-reel {
+    max-height: none;
+  }
+
+  body[data-page="home"] .hero-motion-track {
+    animation-duration: 24s;
   }
 }
 
@@ -2550,8 +2623,7 @@ body[data-page="home"] .contact {
   }
 
   body[data-page="home"] .collection-editorial-grid,
-  body[data-page="home"] .luxury-lookbook .shuffle-grid,
-  body[data-page="home"] .hero-side-cards {
+  body[data-page="home"] .hero-motion-column {
     grid-template-columns: 1fr;
   }
 
@@ -2561,6 +2633,10 @@ body[data-page="home"] .contact {
 
   body[data-page="home"] .collection-editorial-card {
     min-height: 480px;
+  }
+
+  body[data-page="home"] .lookbook-track {
+    animation-duration: 24s;
   }
 }
 
@@ -2594,5 +2670,9 @@ body[data-page="home"] .contact {
 
   body[data-page="home"] .atelier-editorial {
     padding-top: 5rem;
+  }
+
+  body[data-page="home"] .luxury-lookbook .shuffle-card {
+    width: min(250px, 72vw);
   }
 }
