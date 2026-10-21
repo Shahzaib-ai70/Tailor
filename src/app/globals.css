@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #2e1065;
+  --color-ivory: #2e1065;
+  --color-gold: #7c3aed;
+  --color-ink: #ffffff;
+  --color-surface: #f8f4ff;
+  --color-surface-strong: #efe7ff;
+  --color-border: rgba(124, 58, 237, 0.18);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-cormorant);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.2);
+  color: #1f0b46;
+}
+
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.24);
+  padding-bottom: 0.65rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.luxe-button,
+.luxe-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  padding: 0.95rem 1.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.luxe-button {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-ink);
+}
+
+.luxe-button:hover {
+  transform: translateY(-1px);
+  background: #6d28d9;
+  color: #ffffff;
+}
+
+.luxe-button-secondary {
+  background: #ffffff;
+  color: var(--color-gold);
+}
+
+.luxe-button-secondary:hover {
+  transform: translateY(-1px);
+  background: rgba(124, 58, 237, 0.06);
+  border-color: rgba(124, 58, 237, 0.45);
+  color: var(--color-gold);
+}
+
+.luxe-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  transition: color 0.3s ease;
+}
+
+.luxe-link::after {
+  content: "";
+  width: 3rem;
+  height: 1px;
+  background: rgba(124, 58, 237, 0.28);
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.luxe-link:hover {
+  color: var(--color-gold);
+}
+
+.luxe-link:hover::after {
+  width: 4.25rem;
+  background: var(--color-gold);
+}
+
+.field {
+  width: 100%;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  background: #ffffff;
+  padding: 0.95rem 1rem;
+  color: var(--color-ivory);
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.field::placeholder {
+  color: rgba(46, 16, 101, 0.35);
+}
+
+.field:focus {
+  border-color: rgba(124, 58, 237, 0.7);
+  background: rgba(124, 58, 237, 0.03);
+}
+
+.form-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(46, 16, 101, 0.58);
+}
+
+.form-error {
+  font-size: 0.85rem;
+  color: #d9b6b1;
+}
+
+.mian-motion-panel {
+  background:
+    radial-gradient(circle at 22% 24%, rgba(124, 58, 237, 0.18), transparent 24%),
+    radial-gradient(circle at 78% 20%, rgba(168, 85, 247, 0.12), transparent 18%),
+    linear-gradient(135deg, rgba(124, 58, 237, 0.08), transparent 42%),
+    linear-gradient(180deg, #ffffff 0%, #f7f2ff 100%);
+}
+
+.mian-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(16px);
+  opacity: 0.55;
+  animation: mianFloat 11s ease-in-out infinite;
+}
+
+.mian-orb-left {
+  left: -4%;
+  top: 8%;
+  height: 14rem;
+  width: 14rem;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.28), transparent 68%);
+}
+
+.mian-orb-right {
+  right: 4%;
+  top: 18%;
+  height: 11rem;
+  width: 11rem;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 68%);
+  animation-delay: -3s;
+}
+
+.mian-wordmark-wrap {
+  position: relative;
+  animation: mianFloatSoft 8s ease-in-out infinite;
+}
+
+.mian-wordmark-main,
+.mian-wordmark-sub {
+  position: relative;
+  z-index: 2;
+}
+
+.mian-wordmark-main::before,
+.mian-wordmark-main::after {
+  content: "MIAN TAILOR";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+}
+
+.mian-wordmark-main::before {
+  color: rgba(124, 58, 237, 0.45);
+  transform: translate(-10px, 10px);
+  animation: mianEchoLeft 6.5s ease-in-out infinite;
+}
+
+.mian-wordmark-main::after {
+  color: rgba(168, 85, 247, 0.24);
+  transform: translate(12px, -8px);
+  animation: mianEchoRight 7s ease-in-out infinite;
+}
+
+@keyframes mianFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 16px, 0) scale(1.06);
+  }
+}
+
+@keyframes mianFloatSoft {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes mianEchoLeft {
+  0%,
+  100% {
+    transform: translate(-10px, 10px);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate(-20px, 14px);
+    opacity: 0.34;
+  }
+}
+
+@keyframes mianEchoRight {
+  0%,
+  100% {
+    transform: translate(12px, -8px);
+    opacity: 0.12;
+  }
+  50% {
+    transform: translate(22px, -14px);
+    opacity: 0.28;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+}
+
